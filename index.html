@@ -1,0 +1,459 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รวมไอเทมเด็ด Shopee 100 ชิ้นราคาเด็ด</title>
+    <!-- นำเข้าฟอนต์สไตล์โมเดิร์นมินิมอล -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1240px;
+        }
+
+        /* --- ส่วนหัวข้อหลัก (Header) --- */
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .main-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center; 
+            gap: 10px;           
+        }
+
+        .shopee-logo {
+            width: 32px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .right-header {
+            text-align: right;
+        }
+
+        .breadcrumbs {
+            font-size: 13px;
+            color: #6c757d;
+            margin-bottom: 4px;
+        }
+
+        .sub-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        /* --- ระบบกริด 3 คอลัมน์ --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- ดีไซน์การ์ดสินค้า --- */
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #efefef;
+        }
+
+        .card-header {
+            background-color: #ff5722; 
+            color: white;
+            text-align: center;
+            padding: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .card-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-desc {
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.6;
+            color: #111111;
+            margin-bottom: 20px;
+            min-height: 48px;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .author {
+            color: #ff5722;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .author::before {
+            content: "👤";
+        }
+
+        .time {
+            color: #868e96;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .time::before {
+            content: "⏱️";
+        }
+
+        .toggle-reviews-btn {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            color: #495057;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s;
+            width: 100%;
+        }
+
+        .toggle-reviews-btn:hover {
+            background: #e9ecef;
+        }
+
+        .reviews-box {
+            display: none;
+            background: #fdfdfd;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px dashed #ced4da;
+        }
+
+        .reviews-box.active {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .review-item {
+            font-size: 12px;
+            color: #495057;
+            padding: 6px 0;
+            border-bottom: 1px solid #f1f3f5;
+            line-height: 1.5;
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-user {
+            font-weight: 600;
+            color: #fab005;
+            margin-bottom: 2px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 11px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-orange {
+            background-color: #e65100;
+            color: white;
+        }
+
+        .btn-grey {
+            background-color: #eceff1;
+            color: #374151;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .header-section {
+                flex-direction: column-reverse;
+                align-items: flex-start;
+            }
+            .right-header {
+                text-align: left;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header-section">
+            <h1 class="main-title">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg" alt="Shopee Logo" class="shopee-logo">
+                รวมไอเทมเด็ด Shopee 100 ชิ้นราคาเด็ด
+            </h1>
+            <div class="right-header">
+                <div class="breadcrumbs">Home &gt; Issue &gt; รีวิวของดีบอกต่อ</div>
+                <div class="sub-title"># รีวิวของดีบอกต่อ</div>
+            </div>
+        </header>
+
+        <main class="product-grid" id="productGrid"></main>
+    </div>
+
+    <script>
+        // รวมรายชื่อลิงก์สินค้าจริง 100 ลิงก์ตรงตามที่คุณส่งมาเป๊ะๆ
+        const productLinks = [
+            { main: "https://shopee.co.th/product/891556150/42716947373", offer: "https://s.shopee.co.th/2g8ETWfrAf" },
+            { main: "https://shopee.co.th/product/476021115/26073285416", offer: "https://s.shopee.co.th/3B4V4Rdx9m" },
+            { main: "https://shopee.co.th/product/77638533/23523021247", offer: "https://s.shopee.co.th/30l4s8eaUl" },
+            { main: "https://shopee.co.th/product/1174003804/44128510537", offer: "https://s.shopee.co.th/3VhLT3cgTs" },
+            { main: "https://shopee.co.th/product/476021115/25485867844", offer: "https://s.shopee.co.th/3LNvGkdJor" },
+            { main: "https://shopee.co.th/product/1641198046/43621836626", offer: "https://s.shopee.co.th/3qKBrfbPny" },
+            { main: "https://shopee.co.th/product/1618596749/54256553392", offer: "https://s.shopee.co.th/3g0lfMc38x" },
+            { main: "https://shopee.co.th/product/1510804770/43050684074", offer: "https://s.shopee.co.th/4Ax2GHa984" },
+            { main: "https://shopee.co.th/product/72539536/18580919388", offer: "https://s.shopee.co.th/40dc3yamT3" },
+            { main: "https://shopee.co.th/product/237954961/23358865960", offer: "https://s.shopee.co.th/4VZsetYsSA" },
+            { main: "https://shopee.co.th/product/1577630668/26238494785", offer: "https://s.shopee.co.th/4LGSSaZVn9" },
+            { main: "https://shopee.co.th/product/1128884257/28813811433", offer: "https://s.shopee.co.th/4qCj3VXbmG" },
+            { main: "https://shopee.co.th/product/955746786/42514810716", offer: "https://s.shopee.co.th/4ftIrCYF7F" },
+            { main: "https://shopee.co.th/product/1023881453/22757872273", offer: "https://s.shopee.co.th/5ApZS7WL6M" },
+            { main: "https://shopee.co.th/product/1118978290/26831195716", offer: "https://s.shopee.co.th/50W9FoWyRL" },
+            { main: "https://shopee.co.th/product/142908286/26536512388", offer: "https://s.shopee.co.th/BQtUvpNFQ" },
+            { main: "https://shopee.co.th/product/341571666/28282896751", offer: "https://s.shopee.co.th/17TIcq0aP" },
+            { main: "https://shopee.co.th/product/1505570169/26884374095", offer: "https://s.shopee.co.th/W3jtXo6ZW" },
+            { main: "https://shopee.co.th/product/221972107/7715797249", offer: "https://s.shopee.co.th/LkJhEojuV" },
+            { main: "https://shopee.co.th/product/1499522850/41208544581", offer: "https://s.shopee.co.th/qgaI9mptc" },
+            { main: "https://shopee.co.th/product/134770309/29281707476", offer: "https://s.shopee.co.th/gNA5qnTEb" },
+            { main: "https://shopee.co.th/product/1371531771/43877315314", offer: "https://s.shopee.co.th/1BJQgllZDi" },
+            { main: "https://shopee.co.th/product/348248646/42623392111", offer: "https://s.shopee.co.th/1100USmCYh" },
+            { main: "https://shopee.co.th/product/813485708/21431305183", offer: "https://s.shopee.co.th/1VwH5NkIXo" },
+            { main: "https://shopee.co.th/product/1118936514/26322979180", offer: "https://s.shopee.co.th/1Lcqt4kvsn" },
+            { main: "https://shopee.co.th/product/276671426/21580254388", offer: "https://s.shopee.co.th/1qZ7Tzj1ru" },
+            { main: "https://shopee.co.th/product/1112789217/23361496942", offer: "https://s.shopee.co.th/1gFhHgjfCt" },
+            { main: "https://shopee.co.th/product/1220824351/27259215825", offer: "https://s.shopee.co.th/2BBxsbhlC0" },
+            { main: "https://shopee.co.th/product/1303239247/24934528053", offer: "https://s.shopee.co.th/20sXgIiOWz" },
+            { main: "https://shopee.co.th/product/221972107/40812292403", offer: "https://s.shopee.co.th/2VooHDgUW6" },
+            { main: "https://shopee.co.th/product/1220824351/26509204550", offer: "https://s.shopee.co.th/2LVO4uh7r5" },
+            { main: "https://shopee.co.th/product/1044298006/29270980390", offer: "https://s.shopee.co.th/8ATB1dKv1E" },
+            { main: "https://shopee.co.th/product/92360819/22544109294", offer: "https://s.shopee.co.th/809kpKLYMD" },
+            { main: "https://shopee.co.th/product/120958585/7716568770", offer: "https://s.shopee.co.th/8V61QFJeLK" },
+            { main: "https://shopee.co.th/product/1037672177/22376574418", offer: "https://s.shopee.co.th/8KmbDwKHgJ" },
+            { main: "https://shopee.co.th/product/868401466/18970333742", offer: "https://s.shopee.co.th/8pirorINfQ" },
+            { main: "https://shopee.co.th/product/65173690/11482878789", offer: "https://s.shopee.co.th/8fPRcYJ10P" },
+            { main: "https://shopee.co.th/product/474003699/11659851599", offer: "https://s.shopee.co.th/9ALiDTH6zW" },
+            { main: "https://shopee.co.th/product/48144426/25058025807", offer: "https://s.shopee.co.th/902I1AHkKV" },
+            { main: "https://shopee.co.th/product/1527842998/41156371760", offer: "https://s.shopee.co.th/9UyYc5FqJc" },
+            { main: "https://shopee.co.th/product/1100289317/27676263676", offer: "https://s.shopee.co.th/9Kf8PmGTeb" },
+            { main: "https://shopee.co.th/product/1047135871/23275946291", offer: "https://s.shopee.co.th/9pbP0hEZdi" },
+            { main: "https://shopee.co.th/product/871075549/16086302672", offer: "https://s.shopee.co.th/9fHyoOFCyh" },
+            { main: "https://shopee.co.th/product/223832803/3716295861", offer: "https://s.shopee.co.th/AAEFPJDIxo" },
+            { main: "https://shopee.co.th/product/1333857623/27508427626", offer: "https://s.shopee.co.th/9zupD0DwIn" },
+            { main: "https://shopee.co.th/product/325234442/26076899450", offer: "https://s.shopee.co.th/AUr5nvC2Hu" },
+            { main: "https://shopee.co.th/product/1040681903/25425945467", offer: "https://s.shopee.co.th/AKXfbcCfct" },
+            { main: "https://shopee.co.th/product/1049006465/28651462790", offer: "https://s.shopee.co.th/5VSPqjV4Qy" },
+            { main: "https://shopee.co.th/product/1437565138/23590590022", offer: "https://s.shopee.co.th/5L8zeQVhlx" },
+            { main: "https://shopee.co.th/product/253175829/21685245804", offer: "https://s.shopee.co.th/5q5GFLTnl4" },
+            { main: "https://shopee.co.th/product/1100289317/24751986255", offer: "https://s.shopee.co.th/5flq32UR63" },
+            { main: "https://shopee.co.th/product/1027683441/21394227394", offer: "https://s.shopee.co.th/6Ai6dxSX5A" },
+            { main: "https://shopee.co.th/product/221972107/8372021597", offer: "https://s.shopee.co.th/60OgReTAQ9" },
+            { main: "https://shopee.co.th/product/1431213656/27121719672", offer: "https://s.shopee.co.th/6VKx2ZRGPG" },
+            { main: "https://shopee.co.th/product/1118978290/29582840537", offer: "https://s.shopee.co.th/6L1WqGRtkF" },
+            { main: "https://shopee.co.th/product/878429880/25996628557", offer: "https://s.shopee.co.th/6pxnRBPzjM" },
+            { main: "https://shopee.co.th/product/127189389/11548012371", offer: "https://s.shopee.co.th/6feNEsQd4L" },
+            { main: "https://shopee.co.th/product/412196094/26831557126", offer: "https://s.shopee.co.th/7AadpnOj3S" },
+            { main: "https://shopee.co.th/product/1201404264/27676279115", offer: "https://s.shopee.co.th/70HDdUPMOR" },
+            { main: "https://shopee.co.th/product/1361396027/28614185833", offer: "https://s.shopee.co.th/7VDUEPNSNY" },
+            { main: "https://shopee.co.th/product/301369963/23603398271", offer: "https://s.shopee.co.th/7Ku426O5iX" },
+            { main: "https://shopee.co.th/product/1122790618/27263552328", offer: "https://s.shopee.co.th/7pqKd1MBhe" },
+            { main: "https://shopee.co.th/product/241649033/41008854521", offer: "https://s.shopee.co.th/7fWuQiMp2d" },
+            { main: "https://shopee.co.th/product/1505570169/27538925624", offer: "https://s.shopee.co.th/2g8ETWfrBg" },
+            { main: "https://shopee.co.th/product/1546300465/44404934224", offer: "https://s.shopee.co.th/2qRefpfDqj" },
+            { main: "https://shopee.co.th/product/1100320044/25991596939", offer: "https://s.shopee.co.th/30l4s8eaVm" },
+            { main: "https://shopee.co.th/product/216135417/29062650394", offer: "https://s.shopee.co.th/3B4V4RdxAp" },
+            { main: "https://shopee.co.th/product/1217575210/29266994011", offer: "https://s.shopee.co.th/3LNvGkdJps" },
+            { main: "https://shopee.co.th/product/1383474005/29124132618", offer: "https://s.shopee.co.th/3VhLT3cgUv" },
+            { main: "https://shopee.co.th/product/345411985/8523291200", offer: "https://s.shopee.co.th/3g0lfMc38y" },
+            { main: "https://shopee.co.th/product/1036942204/29004630993", offer: "https://s.shopee.co.th/3qKBrfbPp1" },
+            { main: "https://shopee.co.th/product/67276571/15897128189", offer: "https://s.shopee.co.th/40dc3yamU4" },
+            { main: "https://shopee.co.th/product/4406165/22562882743", offer: "https://s.shopee.co.th/4Ax2GHa997" },
+            { main: "https://shopee.co.th/product/93346517/28066997858", offer: "https://s.shopee.co.th/4LGSSaZVoA" },
+            { main: "https://shopee.co.th/product/4062349/215033313", offer: "https://s.shopee.co.th/4VZsetYsTD" },
+            { main: "https://shopee.co.th/product/1124358002/49705006112", offer: "https://s.shopee.co.th/4ftIrCYF8G" },
+            { main: "https://shopee.co.th/product/91705793/18645348735", offer: "https://s.shopee.co.th/4qCj3VXbnJ" },
+            { main: "https://shopee.co.th/product/1128049590/25755237489", offer: "https://s.shopee.co.th/50W9FoWySM" },
+            { main: "https://shopee.co.th/product/973850817/27077224231", offer: "https://s.shopee.co.th/5ApZS7WL7P" },
+            { main: "https://shopee.co.th/product/276671426/29612568094", offer: "https://s.shopee.co.th/17TIcq0bQ" },
+            { main: "https://shopee.co.th/product/1336353767/28125896751", offer: "https://s.shopee.co.th/BQtUvpNGT" },
+            { main: "https://shopee.co.th/product/188163795/18333978120", offer: "https://s.shopee.co.th/LkJhEojvW" },
+            { main: "https://shopee.co.th/product/93346517/22732387300", offer: "https://s.shopee.co.th/W3jtXo6aZ" },
+            { main: "https://shopee.co.th/product/4062349/797396150", offer: "https://s.shopee.co.th/gNA5qnTFc" },
+            { main: "https://shopee.co.th/product/1262827844/29074621757", offer: "https://s.shopee.co.th/qgaI9mpuf" },
+            { main: "https://shopee.co.th/product/494718766/24583688479", offer: "https://s.shopee.co.th/1100USmCZi" },
+            { main: "https://shopee.co.th/product/1280520611/57555609291", offer: "https://s.shopee.co.th/1BJQgllZEl" },
+            { main: "https://shopee.co.th/product/1574305223/45503526782", offer: "https://s.shopee.co.th/1Lcqt4kvto" },
+            { main: "https://shopee.co.th/product/786138262/20650343181", offer: "https://s.shopee.co.th/1VwH5NkIYr" },
+            { main: "https://shopee.co.th/product/24666115/19259313601", offer: "https://s.shopee.co.th/1gFhHgjfDu" },
+            { main: "https://shopee.co.th/product/315869881/20840528895", offer: "https://s.shopee.co.th/1qZ7Tzj1sx" },
+            { main: "https://shopee.co.th/product/1431942181/27126400016", offer: "https://s.shopee.co.th/20sXgIiOY0" },
+            { main: "https://shopee.co.th/product/1156137995/41708865870", offer: "https://s.shopee.co.th/2BBxsbhlD3" },
+            { main: "https://shopee.co.th/product/1148449805/25506346718", offer: "https://s.shopee.co.th/2LVO4uh7s6" },
+            { main: "https://shopee.co.th/product/32706050/2310618269", offer: "https://s.shopee.co.th/2VooHDgUX9" },
+            { main: "https://shopee.co.th/product/431630907/16724705368", offer: "https://s.shopee.co.th/809kpKLYNE" },
+            { main: "https://shopee.co.th/product/1478763431/41570134251", offer: "https://s.shopee.co.th/8ATB1dKv2H" },
+            { main: "https://shopee.co.th/product/1266839715/27754749372", offer: "https://s.shopee.co.th/8KmbDwKHhK" },
+            { main: "https://shopee.co.th/product/1548327770/41203465392", offer: "https://s.shopee.co.th/8V61QFJeMN" },
+            { main: "https://shopee.co.th/product/4062349/1098492468", offer: "https://s.shopee.co.th/8fPRcYJ11Q" }
+        ];
+
+        // คลังข้อความรีวิวของลูกค้าเพื่อความหลากหลายและสมจริง
+        const mockReviewsPool = [
+            [
+                { user: "คุณ มินทร์ธิรา", text: "ได้รับสินค้าแล้วค่ะ ส่งไวมาก ลองใช้แล้วดีจริงตามรีวิว เนื้อสัมผัสบางเบาไม่เหนียวเหนอะหนะ ชอบมากค่ะ" },
+                { user: "คุณ นพดล", text: "คุ้มค่าคุ้มราคามากครับ ร้านค้าห่อบับเบิ้ลมาอย่างดี ราคาถูกกว่าไปซื้อตามห้างเยอะเลย แนะนำครับ" },
+                { user: "คุณ ปิยะนุช", text: "ตอนแรกลังเล แต่พอได้ลองใช้ไปสัปดาห์นึง รู้สึกเลยว่าคุณภาพเกินราคาจริงๆ ซื้อซ้ำแน่นอน" },
+                { user: "คุณ สิทธิโชค", text: "การจัดส่งรวดเร็วดี คุณภาพสินค้าดีมาก ตรงปกทุกอย่าง ใช้งานได้ดีไม่มีปัญหาอะไรครับ" },
+                { user: "คุณ ชลดา", text: "แพ็คของมาดีมากค่ะ แอดมินร้านตอบคำถามสุภาพ ช่วยแนะนำดีมาก ประทับใจการบริการค่ะ" }
+            ],
+            [
+                { user: "คุณ เกรียงไกร", text: "สินค้าดีจริงครับ ราคาประหยัด สั่งร้านนี้รอบที่สามแล้ว ไม่เคยทำให้ผิดหวังเลยครับผม" },
+                { user: "คุณ ธนพร", text: "ได้รับของครบถ้วนค่ะ สินค้าผลิตล็อตใหม่เลย ดีใจมากที่ได้ส่วนลดตอนช่วงโปร คุ้มสุดๆ" },
+                { user: "คุณ พีรพล", text: "คุณภาพดีตามที่โฆษณาไว้เลยครับ จัดส่งไวทันใจมาก ของแท้แน่นอนเช็คแล้วครับ" },
+                { user: "คุณ อารียา", text: "ชอบตรงที่ใช้งานง่ายและเห็นผลไวค่ะ เพื่อนแนะนำมาอีกที ดีจริงไม่จกตาเลย" },
+                { user: "คุณ ณัฐวุฒิ", text: "ราคานี้กับคุณภาพที่ได้ถือว่าคุ้มสุดๆ ครับ ขนส่งโทรแจ้งก่อนเข้าส่งของ สุภาพมาก" }
+            ]
+        ];
+
+        const productTypes = [
+            "ไอเทมบิวตี้บำรุงผิวปังๆ ผิวกระจ่างใสเนียนนุ่มชุ่มชื้น",
+            "สกินแคร์กู้ผิวโทรม ลดรอยสิวอิ่มฟูดูสาวเกาหลี",
+            "เซรั่มเข้มข้น จัดการจุดด่างดำ หน้ากระจ่างใสไวเวอร์",
+            "ครีมกันแดดเนื้อละมุน คุมมันเริ่ด ไม่เป็นคราบระหว่างวัน",
+            "โฟมล้างหน้าสูตรอ่อนโยน ผิวสะอาดหมดจดไม่แห้งตึง",
+            "โทนเนอร์ปรับสภาพผิว เตรียมผิวอิ่มน้ำพร้อมรับการบำรุง"
+        ];
+
+        const gridContainer = document.getElementById('productGrid');
+        let htmlContent = '';
+
+        // ทำการลูปสร้างการ์ดสินค้า 100 ชิ้น พร้อมผูกลิงก์ตรงตามอาร์เรย์ด้านบน
+        for (let i = 1; i <= 100; i++) {
+            const reviewSet = mockReviewsPool[(i % mockReviewsPool.length)];
+            const productTitle = productTypes[(i % productTypes.length)];
+            const linkData = productLinks[i - 1]; // ดึงข้อมูลลิงก์ของชิ้นนั้นๆ มาใช้
+
+            htmlContent += `
+                <div class="card">
+                    <div class="card-header">RECOMMENDED ITEM #${i}</div>
+                    <div class="card-body">
+                        <p class="card-desc">${productTitle}</p>
+                        <div class="card-meta">
+                            <span class="author">รีวิวเด็ดบอกต่อ</span>
+                            <span class="time">เร็วๆ นี้</span>
+                        </div>
+                        
+                        <button class="toggle-reviews-btn" onclick="toggleReviews(this)">
+                            💬 อ่านรีวิวจากลูกค้า (5 คน)
+                        </button>
+                        
+                        <div class="reviews-box">
+                            <div class="review-item"><div class="review-user">⭐ ${reviewSet[0].user}</div>${reviewSet[0].text}</div>
+                            <div class="review-item"><div class="review-user">⭐ ${reviewSet[1].user}</div>${reviewSet[1].text}</div>
+                            <div class="review-item"><div class="review-user">⭐ ${reviewSet[2].user}</div>${reviewSet[2].text}</div>
+                            <div class="review-item"><div class="review-user">⭐ ${reviewSet[3].user}</div>${reviewSet[3].text}</div>
+                            <div class="review-item"><div class="review-user">⭐ ${reviewSet[4].user}</div>${reviewSet[4].text}</div>
+                        </div>
+
+                        <div class="card-actions">
+                            <!-- ลิงก์สั้นเปิดแท็บใหม่ -->
+                            <a href="${linkData.offer}" target="_blank" class="btn btn-orange">ข้อเสนอพิเศษ</a>
+                            <!-- ลิงก์ยาวเปิดแท็บใหม่ -->
+                            <a href="${linkData.main}" target="_blank" class="btn btn-grey">ลิงก์สินค้าหลัก</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        gridContainer.innerHTML = htmlContent;
+
+        function toggleReviews(button) {
+            const reviewsBox = button.nextElementSibling;
+            reviewsBox.classList.toggle('active');
+            if (reviewsBox.classList.contains('active')) {
+                button.innerHTML = '❌ ปิดหน้าต่างรีวิว';
+            } else {
+                button.innerHTML = '💬 อ่านรีวิวจากลูกค้า (5 คน)';
+            }
+        }
+    </script>
+</body>
+</html>
